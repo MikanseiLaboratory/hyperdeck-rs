@@ -1,0 +1,29 @@
+[package]
+name = "hyperdeck"
+description = "Async, runtime-agnostic HyperDeck client and server"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+authors.workspace = true
+repository.workspace = true
+
+[dependencies]
+hyperdeck-core = { workspace = true }
+heapless = { workspace = true }
+embedded-io-async = { workspace = true }
+embassy-sync = { workspace = true }
+embassy-futures = { workspace = true }
+embassy-time = { workspace = true, optional = true }
+defmt = { workspace = true, optional = true }
+
+[features]
+default = ["client", "server"]
+client = []
+server = []
+defmt = ["dep:defmt", "hyperdeck-core/defmt", "embassy-sync/defmt"]
+embassy-time = ["dep:embassy-time", "client"]
+log = []
+
+[lints]
+workspace = true

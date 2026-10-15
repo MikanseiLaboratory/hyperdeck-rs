@@ -1,0 +1,50 @@
+[workspace]
+resolver = "3"
+members = [
+    "crates/hyperdeck-core",
+    "crates/hyperdeck",
+    "crates/hyperdeck-tokio",
+    "crates/hyperdeck-blocking",
+    "examples/tokio-client",
+    "examples/tokio-mock-deck",
+    "examples/std-blocking-client",
+    "examples/std-blocking-mock-deck",
+]
+exclude = ["examples/embassy-rp2040-w5500"]
+
+[workspace.package]
+edition = "2024"
+rust-version = "1.99"
+license = "MIT OR Apache-2.0"
+authors = ["Mikansei Laboratory"]
+repository = "https://github.com/MikanseiLaboratory/hyperdeck-rs"
+version = "0.1.0"
+
+[workspace.dependencies]
+hyperdeck-core = { path = "crates/hyperdeck-core", default-features = false }
+hyperdeck = { path = "crates/hyperdeck", default-features = false }
+hyperdeck-tokio = { path = "crates/hyperdeck-tokio" }
+hyperdeck-blocking = { path = "crates/hyperdeck-blocking" }
+heapless = { version = "0.9", default-features = false }
+serde = { version = "1", default-features = false, features = ["derive", "alloc"] }
+serde_json = "1"
+defmt = "1"
+embedded-io = { version = "0.7", default-features = false }
+embedded-io-async = { version = "0.7", default-features = false }
+embedded-io-adapters = { version = "0.7", default-features = false }
+embassy-sync = { version = "0.8", default-features = false }
+embassy-futures = { version = "0.1", default-features = false }
+embassy-time = { version = "0.5", default-features = false }
+trait-variant = "0.1"
+critical-section = "1"
+tokio = { version = "1", default-features = false }
+reqwest = { version = "0.13", default-features = false }
+tokio-tungstenite = { version = "0.30", default-features = false }
+axum = { version = "0.8", default-features = false }
+futures-util = { version = "0.3", default-features = false }
+
+[workspace.lints.rust]
+unsafe_code = "forbid"
+
+[workspace.lints.clippy]
+all = { level = "warn", priority = -1 }

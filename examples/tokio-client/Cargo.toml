@@ -1,0 +1,15 @@
+[package]
+name = "tokio-client"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+publish = false
+
+[[bin]]
+name = "tokio-client"
+path = "src/main.rs"
+
+[dependencies]
+hyperdeck-tokio = { workspace = true }
+tokio = { workspace = true, features = ["rt-multi-thread", "macros", "net", "time", "io-util"] }
