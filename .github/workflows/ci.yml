@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: 1.99.0
+          components: rustfmt, clippy
+          targets: thumbv6m-none-eabi
+      - name: Format
+        run: |
+          cargo fmt --all --check
+          cargo fmt --manifest-path examples/embassy-rp2040-w5500/Cargo.toml --all --check
+      - name: Clippy
+        run: cargo clippy --workspace --all-targets --all-features -- -D warnings
+      - name: Test
+        run: cargo test --workspace
+      - name: no_std check
+        run: |
+          cargo check -p hyperdeck-core --target thumbv6m-none-eabi --no-default-features
+          cargo check -p hyperdeck --target thumbv6m-none-eabi --no-default-features --features client,server,embassy-time
+          cargo check -p hyperdeck-blocking --target thumbv6m-none-eabi --no-default-features --features client
+      - name: W5500-EVB-Pico example
+        working-directory: examples/embassy-rp2040-w5500
+        run: cargo check --bins

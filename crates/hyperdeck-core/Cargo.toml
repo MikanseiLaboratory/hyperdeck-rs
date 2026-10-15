@@ -1,0 +1,28 @@
+[package]
+name = "hyperdeck-core"
+description = "Sans-I/O core for the Blackmagic HyperDeck Ethernet Protocol and REST models"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+authors.workspace = true
+repository.workspace = true
+
+[dependencies]
+heapless = { workspace = true }
+serde = { workspace = true, optional = true }
+defmt = { workspace = true, optional = true }
+
+[features]
+default = []
+alloc = []
+std = ["alloc"]
+serde = ["dep:serde", "alloc"]
+defmt = ["dep:defmt", "heapless/defmt"]
+rest = ["serde", "alloc"]
+
+[dev-dependencies]
+serde_json = { workspace = true }
+
+[lints]
+workspace = true

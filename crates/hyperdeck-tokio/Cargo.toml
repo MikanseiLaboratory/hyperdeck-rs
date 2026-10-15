@@ -1,0 +1,31 @@
+[package]
+name = "hyperdeck-tokio"
+description = "Tokio bindings, REST client, and REST server for HyperDeck"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+authors.workspace = true
+repository.workspace = true
+
+[dependencies]
+hyperdeck = { workspace = true, features = ["client", "server"] }
+hyperdeck-core = { workspace = true, features = ["std", "rest"] }
+embedded-io-adapters = { workspace = true, features = ["tokio-1"] }
+embassy-sync = { workspace = true, features = ["std"] }
+critical-section = { workspace = true, features = ["std"] }
+tokio = { workspace = true, features = ["rt", "rt-multi-thread", "macros", "time", "net", "io-util", "sync"] }
+reqwest = { workspace = true, features = ["json", "rustls", "http2"] }
+tokio-tungstenite = { workspace = true, features = ["connect"] }
+axum = { workspace = true, features = ["json", "http1", "tokio"] }
+serde = { workspace = true }
+serde_json = { workspace = true }
+futures-util = { workspace = true, features = ["sink", "std"] }
+heapless = { workspace = true }
+
+[dev-dependencies]
+hyperdeck-blocking = { workspace = true }
+tokio = { workspace = true, features = ["rt-multi-thread", "macros", "time", "net"] }
+
+[lints]
+workspace = true

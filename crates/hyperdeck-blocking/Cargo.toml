@@ -1,0 +1,23 @@
+[package]
+name = "hyperdeck-blocking"
+description = "Blocking HyperDeck client and server for std and no_std"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+authors.workspace = true
+repository.workspace = true
+
+[dependencies]
+hyperdeck-core = { workspace = true }
+embedded-io = { workspace = true }
+heapless = { workspace = true }
+
+[features]
+default = ["std", "client", "server"]
+std = ["hyperdeck-core/std", "hyperdeck-core/alloc", "embedded-io/std"]
+client = []
+server = ["std"]
+
+[lints]
+workspace = true
